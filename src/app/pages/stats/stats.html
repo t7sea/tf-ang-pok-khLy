@@ -1,0 +1,12 @@
+@if(!appService.pokemon.isLoading()) {
+    <div>
+        @for(stat of appService.pokemon.value()!.stats; track stat.stat.name) {
+            <p>{{stat.stat.name}} : {{stat.base_stat}}</p>
+        }
+    </div>
+    <div>
+        <canvas baseChart [data]="barChartData()" type="radar"> </canvas>
+    </div>
+} @else {
+    <app-loader />
+}
