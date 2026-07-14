@@ -1,14 +1,16 @@
+import { httpResource } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
+  pokemonName = signal('Pikachu')
+  pokemon = httpResource<any>(() => 'https://pokeapi.co/api/v2/pokemon/' + this.pokemonName())
 
-  mySignal = signal(42)
-
-  modifierLeSignal() {
-    this.mySignal.update(old => old + 1)
+  constructor() {
+    setTimeout(() => {
+      this.pokemonName.set('Eevee')
+    }, 2000);
   }
-
 }
